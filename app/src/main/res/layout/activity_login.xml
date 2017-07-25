@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="presenter"
+            type="manhnv.unittestseminar.login.LoginPresenter"
+            />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="your email"
+            android:text="@={presenter.email}"
+            android:padding="10dp"
+            />
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@={presenter.password}"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:id="@+id/btnLogin"
+            android:text="@string/login"
+            android:onClick="@{() -> presenter.onClickLogin()}"
+            />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+  compileSdkVersion 26
+  buildToolsVersion '26.0.0'
+  defaultConfig {
+    applicationId "manhnv.unittestseminar"
+    minSdkVersion 15
+    targetSdkVersion 26
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    debug {
+      minifyEnabled false
+      // Uses new built-in shrinker http://tools.android.com/tech-docs/new-build-system/built-in-shrinker
+      useProguard false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+    }
+    release {
+      minifyEnabled true
+      useProguard true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+    }
+  }
+  packagingOptions {
+    exclude 'META-INF/DEPENDENCIES.txt'
+    exclude 'META-INF/LICENSE.txt'
+    exclude 'META-INF/NOTICE.txt'
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/DEPENDENCIES'
+    exclude 'META-INF/notice.txt'
+    exclude 'META-INF/license.txt'
+    exclude 'META-INF/dependencies.txt'
+    exclude 'META-INF/LGPL2.1'
+    exclude 'META-INF/MANIFEST.MF'
+    exclude 'META-INF/rxjava.properties'
+  }
+
+  dataBinding {
+    enabled = true
+  }
+}
+
+dependencies {
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  compile "com.android.support:appcompat-v7:$rootProject.androidSupportVersion"
+  compile "com.android.support:design:$rootProject.androidSupportVersion"
+
+
+  //Support ReactiveX android
+  compile "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+  compile "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+  //Using this for parse json data to object
+  compile "com.google.code.gson:gson:$rootProject.gsonVersion"
+  // Dependencies for local unit tests
+
+  //Using retrofit library for connect api service
+  compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+  compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.gsonConverterVersion"
+  compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.loggingVersion"
+  compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.rxAdapterVersion"
+
+  /*TEST*/
+  androidTestCompile "com.android.support:appcompat-v7:$rootProject.androidSupportVersion"
+  androidTestCompile "com.android.support:recyclerview-v7:$rootProject.androidSupportVersion"
+  androidTestCompile "com.android.support:design:$rootProject.androidSupportVersion"
+
+  // Dependencies for local unit tests
+  testCompile "junit:junit:$rootProject.ext.junitVersion"
+  testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+  testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+  testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powerMockito"
+  testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powerMockito"
+
+  // Android Testing Support Library's runner and rules
+  androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+  androidTestCompile "com.android.support.test:rules:$rootProject.ext.rulesVersion"
+
+  // Espresso UI Testing dependencies.
+  androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+  androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
+}
