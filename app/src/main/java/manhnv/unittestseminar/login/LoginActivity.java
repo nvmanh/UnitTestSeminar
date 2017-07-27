@@ -76,7 +76,7 @@ public class LoginActivity extends BaseBindingActivity<ActivityLoginBinding, Log
     }
 
     @Override
-    protected void init() {
+    public void init() {
         presenter = new LoginPresenter(this, LoginRepository.instance());
     }
 

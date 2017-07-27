@@ -81,6 +81,10 @@ dependencies {
   testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powerMockito"
   testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powerMockito"
 
+  // https://mvnrepository.com/artifact/org.easymock/easymock
+  testCompile group: 'org.easymock', name: 'easymock', version: '3.4'
+
+
   // Android Testing Support Library's runner and rules
   androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
   androidTestCompile "com.android.support.test:rules:$rootProject.ext.rulesVersion"

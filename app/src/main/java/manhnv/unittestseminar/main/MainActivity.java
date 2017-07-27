@@ -40,7 +40,7 @@ public class MainActivity extends BaseBindingActivity<ActivityMainBinding, MainP
     }
 
     @Override
-    protected void init() {
+    public void init() {
         mUser = new Gson().fromJson(getIntent().getStringExtra(INTENT_USER), User.class);
         presenter = new MainPresenter(this, mUser);
     }
