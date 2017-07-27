@@ -9,4 +9,5 @@ import android.content.Context;
 public interface BaseView<P extends BasePresenter> {
     void setPresenter(P presenter);
     Context context();
+    void init();
 }

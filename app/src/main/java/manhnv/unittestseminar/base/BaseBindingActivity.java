@@ -25,5 +25,5 @@ public abstract class BaseBindingActivity<V extends ViewDataBinding, P extends B
 
     protected abstract int getLayoutId();
 
-    protected abstract void init();
+    public abstract void init();
 }
