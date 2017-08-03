@@ -17,4 +17,6 @@
     <string name="password_error">Your password must be length &gt;= 8 and &lt;= 16, contains at least 1 special char, 1 upper case character, 1 number</string>
     <string name="requirement_error">Input your email &amp; password to continue</string>
     <string name="login">Login</string>
+    <string name="hint_email">your email</string>
+    <string name="hint_password">password</string>
 </resources>
