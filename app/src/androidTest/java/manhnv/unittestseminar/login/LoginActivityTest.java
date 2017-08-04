@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -45,7 +46,8 @@ public class LoginActivityTest {
     public void test_1_login() {
         // TODO: 8/3/17 check hint email, password
         onView(withId(R.id.edtEmail)).check(matches(withHint(getString(R.string.hint_email))));
-        onView(withId(R.id.edtPassword)).check(matches(withHint(getString(R.string.hint_password))));
+        onView(withId(R.id.edtPassword)).check(
+                matches(withHint(getString(R.string.hint_password))));
         // TODO: 8/3/17 case 1: check valid email
         //input invalid email
         onView(withId(R.id.edtEmail)).perform(typeText("dkm"), closeSoftKeyboard());
@@ -57,14 +59,26 @@ public class LoginActivityTest {
         //expected
         //show correct error message on edit text email
         onView(withId(R.id.edtEmail)).check(matches(hasErrorText(getString(R.string.email_error))));
-
         //delay test some 1 second to view on device
         SystemClock.sleep(1000);
 
         // TODO: 8/3/17 case 2: check valid password
+        onView(withId(R.id.edtEmail)).perform(clearText());
+        onView(withId(R.id.edtPassword)).perform(clearText());
         //.......... implemented
+        onView(withId(R.id.edtEmail)).perform(typeText(USER_EMAIL), closeSoftKeyboard());
+        onView(withId(R.id.edtPassword)).perform(typeText("__12121212"), closeSoftKeyboard());
+        onView(withId(R.id.btnLogin)).perform(click());
+        onView(withId(R.id.edtPassword)).check(
+                matches(hasErrorText(getString(R.string.password_error))));
+
+        //delay test some 1 second to view on device
+        SystemClock.sleep(1000);
 
         // TODO: 8/3/17 case 3: check login success
+        onView(withId(R.id.edtEmail)).perform(clearText());
+        onView(withId(R.id.edtPassword)).perform(clearText());
+        //--------------
         onView(withId(R.id.edtEmail)).perform(typeText(USER_EMAIL), closeSoftKeyboard());
         onView(withId(R.id.edtPassword)).perform(typeText(USER_PASSWORD), closeSoftKeyboard());
 
@@ -72,5 +86,11 @@ public class LoginActivityTest {
 
         onView(withId(R.id.tvSalutation)).check(
                 matches(allOf(isDescendantOfA(withId(R.id.layoutMain)), isDisplayed())));
+        //delay test some 1 second to view on device
+        SystemClock.sleep(1000);
+    }
+
+    @Test public void test_2_mockStatic(){
+
     }
 }
