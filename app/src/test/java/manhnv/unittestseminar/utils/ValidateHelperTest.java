@@ -26,6 +26,7 @@ public class ValidateHelperTest {
     public void case_1_test_empty() throws Exception {
         Assert.assertFalse(ValidateHelper.isNotEmpty(null));
         Assert.assertFalse(ValidateHelper.isNotEmpty(""));
+        Assert.assertFalse(ValidateHelper.isNotEmpty("   "));
         Assert.assertTrue(ValidateHelper.isNotEmpty("abc"));
     }
 

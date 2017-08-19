@@ -2,6 +2,7 @@ package manhnv.unittestseminar.login;
 
 import android.content.Context;
 import android.databinding.ObservableField;
+import android.text.TextUtils;
 import io.reactivex.Observable;
 import manhnv.unittestseminar.TestSchedulerRule;
 import manhnv.unittestseminar.data.model.User;
@@ -21,6 +22,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 /**
  * Created by root on 7/24/17.
@@ -61,8 +63,14 @@ public class LoginPresenterTest {
     @Before
     public void setupLoginPresenter() throws Exception {
         MockitoAnnotations.initMocks(this);
+        mockStatic(TextUtils.class);
         // neu dung singleton ->
+        when(mView.context()).thenReturn(mContext);
         mPresenter = new LoginPresenter(mView, mLoginRepository);
+    }
+
+    public String getString(int resId) {
+        return mContext.getString(resId);
     }
 
     @Test

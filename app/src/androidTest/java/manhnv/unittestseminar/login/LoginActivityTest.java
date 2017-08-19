@@ -89,8 +89,4 @@ public class LoginActivityTest {
         //delay test some 1 second to view on device
         SystemClock.sleep(1000);
     }
-
-    @Test public void test_2_mockStatic(){
-
-    }
 }
